@@ -1,0 +1,23 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag josejlpp/builder-gitlab-ci:latest
+           export TAG=$(date +%s)
+           docker tag josejlpp/builder-gitlab-ci:latest josejlpp/builder-gitlab-ci:$TAG
+           docker push josejlpp/builder-gitlab-ci:latest
+           docker push josejlpp/builder-gitlab-ci:$TAG
+      
