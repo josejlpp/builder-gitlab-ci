@@ -22,3 +22,8 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
     python3 get-pip.py
     
 RUN pip install --ignore-installed six awscli awsebcli
+
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.18.0/bin/linux/amd64/kubectl && \
+    chmod +x ./kubectl && \
+    mkdir -p ~/.kube/ && \
+    mv ./kubectl /usr/local/bin/kubectl
